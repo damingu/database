@@ -63,7 +63,7 @@ file을 대표적인 예로 들 수 있습니다.
 
 출처 : 생활코딩 - DATABASE 1
 
-![image-20201226171017464](C:%5CUsers%5CUser%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20201226171017464.png)
+![image-20201226171017464](README.asset/image-20201226171017464.png)
 
 
 
@@ -78,18 +78,18 @@ file을 대표적인 예로 들 수 있습니다.
     - 원하는 조건을 기준(날짜, 작성자.....)으로 빠르게 정보를 분류 할 수 있다. 
     - 출처 : 생활 코딩 
 
-    ![image-20201226184832234](C:%5CUsers%5CUser%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20201226184832234.png)
+    ![image-20201226184832234](README.assets/image-20201226184832234.png)
 
     - 보고 싶지 않은 영역은 감추는 것도 가능
     - 출처 : 생활 코딩
 
-    ![image-20201226185040888](C:%5CUsers%5CUser%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20201226185040888.png)
+    ![image-20201226185040888](README.assets/image-20201226185040888.png)
 
   - 즉, 데이터 가공이 file보다 spreadsheet가 훨씬 쉬워진다. 
 
   
 
-  ![image-20201226185213219](C:%5CUsers%5CUser%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20201226185213219.png)
+  ![image-20201226185213219](README.assets/image-20201226185213219.png)
 
  
 
@@ -113,7 +113,7 @@ Q ) database를 그럼 어떤 프로그램을 사용해야 할까요? 어떤 데
       - 전체적인 데이터베이스 시장 흐름을 장악하고 있는것은 관계형 데이터 베이스인 것을 알 수 있다.
     - Document store :  
 
-![image-20201226185908393](C:%5CUsers%5CUser%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20201226185908393.png)
+![image-20201226185908393](README.assets/image-20201226185908393.png)
 
 간단하게 정리하는 각 데이터베이스 규모와 사용처
 
