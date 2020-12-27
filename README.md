@@ -63,7 +63,7 @@ file을 대표적인 예로 들 수 있습니다.
 
 출처 : 생활코딩 - DATABASE 1
 
-![image-20201226171017464](README.asset/image-20201226171017464.png)
+![image-20201226171017464](README.assets/image-20201226171017464.png)
 
 
 
