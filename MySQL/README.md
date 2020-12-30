@@ -554,3 +554,306 @@ mysql> UPDATE topic SET author="damingu" WHERE id=3;
 ```
 
 ![image-20201230224636600](README.assets/image-20201230224636600.png)
+
+
+
+#### ☝🏻매우 중요
+
+update에서 `WHERE`과 같은 조건문이 빠지게 되면 재앙이 일어날 수 있습니다😂
+
+모든 데이터 값이 update된 조건으로 바뀌기 떄문입니다
+
+꼭꼭 조심해야합니다!
+
+
+
+### 4.5 SQL의 DELETE구문(DELETE)
+
+- 삭제
+  - ☝🏻`WHERE`로 조건을 주지 않으면 테이블이 통째로 날아가 버립니다. 정말정말정말 주의해야합니다!🤦🏻‍♀️
+
+```sql
+mysql> DELETE FROM topic WHERE id = 5 ; 
+```
+
+
+
+## 5. 더 배워보기🤔
+
+### 5.1 수업의 정상 
+
+![image-20201231004253958](README.assets/image-20201231004253958.png)
+
+
+
+### 5.2 관계형 데이터베이스의 필요성 
+
+> 싸피 프로젝트를 진행하면서 코딩쌤이 잠깐 언급했지만 사실 정확하게 이해하지 못했었던 내용입니다. 😂
+>
+> 왜 관계형 데이터베이스가 필요할까요?
+>
+> 거기에 대한 답을 오늘은 꼭 알고 싶습니다! 😛
+
+
+
+우리는 적게는 몇만개에서 부터 많게는 몇십억개의 데이터를 저장하고 관리해야합니다. 
+
+하지만 우리가 받는 데이터는 예측할 수 없죠.
+
+중복이 많이 일어난다던지, 혹은 동명이인이 있어 이름은 같지만 다른 내용이 다르다던지 등등 
+
+정보를 구별해서 저장해야하지만 중복이 많이 일어나는 경우, 심지어 그런 데이터가 몇십억개 중 몇십만개를 차지하게 된다면 그 만큼 손해보는 일이 없을겁니다. 
+
+예를 들어 몇십만개의 데이터를 작성한 유저의 이름이 바뀌었다고 한다면 그 유저의 이름이 있는 모든 `row`값을 하나하나 일일이 다 찾아서 바꿔줘야 합니다. 
+
+할 일도 많은데 하루종일 그런 일을 하고 있을 수 없습니다😥
+
+
+
+아래의 사진에서 파란영역은 바뀌기 전입니다.
+
+아까 sql실습에서 직접 실현 시켰던 표(table)임을 확인 할 수 있죠.
+
+그 아래 새롭게 정의된 두개의 테이블이 바로 관계를 맺고 있음을 알수 있는 `관계형 데이터베이스`입니다. 
+
+~~제가 못한다고 했던..ㅎㅎ..~~
+
+![image-20201231005529127](README.assets/image-20201231005529127.png)
+
+
+
+아래와 같이 데이터가 아무리 많아도 하나하나 다 바꿔 줄 필요 없이 `author`table 에 정의된 `name`속성만 바꿔준다면 모든 위의 파란 영역에서 처럼 모든 이름을 다 바꿔주지 않아도 됩니다! 
+
+말하자면 유지보수 하기가 훨씬 쉬워진다는 거죠😏
+
+마치 함수에서 상수 선언보다 변수 선언을 해서 값을 담으라는 것과 같은 맥락이라고 생각이 됩니다.🙂
+
+![image-20201231005745726](README.assets/image-20201231005745726.png)
+
+
+
+심지어 동명이인을 구별해 주는 것도 매우 간편하고 명확하게 해 줄 수 있습니다.
+
+1번의 author와 4번의 author는 이름과 직업이 같은 동명이인인데 `그냥 데이터베이스`에서는 id = 1과 id = 5가 같이 사람이 쓴 것인지를 알 수 있는 방법이 없습니다. 
+
+하지만 아래와 같이 `관계형 데이터베이스`라면 id = 1과 id = 5의 `author_id`가 다르기 때문에 동명이인이지만 다른 사람이 작성했다는 것을 명확하게 알 수 있습니다.
+
+실생활로 예를 들자면 `나와 같은 이름을 가진 내 또래 사람`을 보다 쉽게 구별 할 수 있다는 것이죠😁
+
+![image-20201231010153321](README.assets/image-20201231010153321.png)
+
+
+
+#### 하지만 단점도 있습니다
+
+Trade off 라고도 하죠😂
+
+`그냥 데이터베이스`에서는 데이터를 보다 직관적으로 볼 수 있습니다. 
+
+한 줄(row)만 봐도 쉽게 모든 정보를 알 수 있죠,
+
+`관계형 데이터베이스`같은 경우 데이터와 연관되어 있는 `테이블의 참조값`만을 적어 놓게 되면 데이터를 볼 때 데이터의 참조값에 해당되는 테이블을 열어서 또 봐야한다는 불편함이 있습니다. 
+
+그래서 우리는 이런 컨셉을 잡고 가야합니다. 
+
+**데이터베이스에 데이터는 분산시켜 저장하고 보여줄 땐 합쳐서 보여준다는 개념으로 잡아야 합니다. **
+
+![image-20201231011203218](README.assets/image-20201231011203218.png)
+
+
+
+### 5.3 테이블 분리하기
+
+위와 같이 표(table)은 따로 저장하고 보여주는 것은 같이 보여주기 위해서 일단 표(table)을 분리 해서 만들어야 하는데 그 코드는 아래에 명시해 두겠습니다.
+
+#### ☝🏻여기 주목
+
+코드를 주는데는 이유가 있습니다.
+
+여기서 배워야 할 점은 바로 **테이블을 만드는 순서**입니다.
+
+물론 순서가 바뀐다고 실행이 안되는 건 아니지만 보다 헷갈리지 않고 만들 수 있는 방법을 생각해 내야 합니다.
+
+지금 우리가 처한 상황에선 `책과 작가`를 매칭시켜야 합니다. 
+
+책을 쓴 작가가 먼저 있어야 책도 있겠죠? 😆
+
+따라서 
+
+1. 책을 쓴 작가에 대한 정보를 담은 테이블을 먼저 만들고 
+
+2. 그 다음 책에 대한 정보를 쓰면서 `author_id`에 `작가의 id` 를 매칭시켜 줍니다. 
+
+```sql
+structure for table `author`
+--
+ 
+ 
+CREATE TABLE `author` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(20) NOT NULL,
+  `profile` varchar(200) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) 
+ 
+--
+-- Dumping data for table `author`
+--
+ 
+INSERT INTO `author` VALUES (1,'damingu','developer');
+INSERT INTO `author` VALUES (2,'eric','database administrator');
+INSERT INTO `author` VALUES (3,'ericNam','data scientist, developer');
+ 
+--
+-- Table structure for table `topic`
+--
+ 
+CREATE TABLE `topic` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `title` varchar(30) NOT NULL,
+  `description` text,
+  `created` datetime NOT NULL,
+  `author_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+)
+ 
+--
+-- Dumping data for table `topic`
+--
+ 
+INSERT INTO `topic` VALUES (1,'MySQL','MySQL is...','2020-12-31 12:10:11',1);
+INSERT INTO `topic` VALUES (2,'Oracle','Oracle is ...','2020-12-31 13:01:10',1);
+INSERT INTO `topic` VALUES (3,'SQL Server','SQL Server is ...','2020-12-310 11:01:10',2);
+INSERT INTO `topic` VALUES (4,'PostgreSQL','PostgreSQL is ...','2020-12-31 01:03:03',3);
+INSERT INTO `topic` VALUES (5,'MongoDB','MongoDB is ...','2020-12-31 12:31:03',1);
+```
+
+
+
+### 5.4 JOIN - 관계형 데이터베이스의 꽃
+
+위에서 테이블을 나눠서 저장했다면 여기서는 테이블을 같이 보여주는 코드를 짜보겠습니다. 
+
+- JOIN 
+  - SELECT * FROM `table name1` LEFT **JOIN** `table name2`; : 이렇게만 적는다면 분명 에러가 납니다.🥵
+    - 왜냐하면 MySQL 입장에서는 난감하거든요.
+    - MySQL : 어떤 참조 조건으로 합쳐서 보여주라는건데??!!!🤬
+  - 따라서 우리는 참조 조건이되는 값을 지정해 줘야 합니다.
+  - ON `참조` 조건 ; : 따라서 합쳐서 보여줄 값이 어떤 값을 참조해야 하는지 조건을 붙여줘야 합니다. 
+
+```sql
+mysql> SELECT * FROM topic LEFT JOIN author ON topic.author_id = author.id ;
+```
+
+![image-20201231013904144](README.assets/image-20201231013904144.png)
+
+
+
+또 MySQL에서 합쳐서 보여주는 테이블이 2개이기 떄문에 `id`값도 2개입니다. 
+
+이럴 경우 MySQL은 어떤 id를 보여줘야 할지 모르겠다며 `error : ambigous`를 내보내며 모호하다고 말합니다.
+
+![image-20201231014415099](README.assets/image-20201231014415099.png)
+
+
+
+- 2개의 테이블에서 `id`값이 2개 이상일 때에는 어떤 id를 보여주고 싶은지 명시해야합니다.
+
+```sql
+mysql> SELECT topic.id, title, description, created, name, profile FROM topic LEFT JOIN author ON topic.author_id = author.id ;
+```
+
+![image-20201231014726227](README.assets/image-20201231014726227.png)
+
+
+
+또 보여지는 테이블 속성을 `보여줄 땐 내가 원하는대로 보여줘`라며 새로운 이름으로 출력시킬 수도 있습니다.
+
+- AS 
+
+```sql
+mysql> SELECT topic.id AS topic_id, title, description, created, name, profile FROM topic LEFT JOIN author ON topic.author_id = author.id ; 
+```
+
+![image-20201231015338430](README.assets/image-20201231015338430.png)
+
+
+
+프로그래밍에서 중복을 제거하는 것은 굉장히 중요한 일입니다. 
+
+아래와 같은 예를 보시면 얼마나 지금 하는 관계형 데이터 베이스가 혁명적인지를 알 수 있을 겁니다.
+
+`그냥 데이터베이스` 같은 경우 댓글을 달수 있는 테이블이 추가 됐을 때, `profile`이 바뀐다면 `topic.profile`과 `comment.profile`을 하나하나 일일이 다 바꿔 줘야 합니다.
+
+정말 말도 안되게 수고스러운 일이 아닐 수 없군용...🤦🏻‍♀️
+
+![image-20201231020222358](README.assets/image-20201231020222358.png)
+
+
+
+하지만 `관계형 데이터베이스`의 경우 `author.profile`만 바꿔주면 되기 때문에 매우매우매우 효율적이고 간단하게 정보를 수정 할 수 있습니다.
+
+![image-20201231020348151](README.assets/image-20201231020348151.png)
+
+
+
+#### ☝너무 중요 
+
+#### 즉, 테이블을 분리한다는 것은 `author`테이블과 `topic`테이블 사이에만 관계를 맺을 수 있는 것이 아니라 모든 테이블이 `author`의 식별자인 id와 일치하는 식별자 값을 그 행에 포함하고 있다면 `JOIN`을 통해서 얼마든지 관계를 맺을 수 있습니다.🙊
+
+
+
+### 5.5 인터넷과 데이터베이스
+
+우리가 터미널에서 명령어를 입력해서 명령하고 거기에 대한 응답을 받았을 때 우리는 우리가 직접 database serve에 접근했다고 생각했습니다.
+
+하지만 우리는 절대 database server에 직접 접근할 수 없습니다.
+
+그렇다면 우리가 검은색 터미널 창에서 사용한 MySQL은 뭘까요?
+
+바로 database client입니다.
+
+**Database server는 반드시 어떠한 형태로든지 databse client**를 이용해야 합니다. 
+
+![image-20201231021813189](README.assets/image-20201231021813189.png)
+
+
+
+우리가 사용헀던 MySQL은 명령어 기반의 프로그램이었습니다. 
+
+우리가 MySQL을 설치하면 MySQL을 만든 사람들이 MySQL서버에 접속할 수 있도록 기본적으로 제공하는 기본 클라이언트가 `MySQL monitor`였던 것입니다. 
+
+`MySQL monitor`은 명령어를 이용해서 database server를 제어하는 프로그램이었던 것입니다. 
+
+![image-20201231022020816](README.assets/image-20201231022020816.png)
+
+
+
+`MySQL monitor`이외에 `사용자GUI`를 제공하는 `MySQL Workbench`도 있습니다. 
+
+자바 스프링때 봤던 기억이 나에용🧐
+
+
+
+이렇게 `database client`와 `database server`가 생기면 어떤 폭발적인 효과가 생기냐면 
+
+**저기에 있는 `database server`에 데이터를 저장하고 전세계에 있는 수많은` database client`들이 `database server`를 중심으로 해서 데이터를 넣고 뺴는게 가능해지게 됩니다. 웹이나 앱과 같은 UI를 사용하지 않아도 전세계에 있는 수많은 사람들이 하나의 `database server`를 이용해서 여러가지 정보를 서로 주고 받고 정보를 관리하는 것을 가능하게 합니다. **
+
+![image-20201231022721090](README.assets/image-20201231022721090.png)
+
+### 5.6 MySQL 클라이언트 
+
+MySQL 클라이언트들은 많은 종류가 있지만 그 중 MySQL 설치와 동시에 함께 설치되는 `MySQL monitor`는 많은 장점을 가지고 있습니다.🙂
+
+- 장점 
+  - server가 있는 곳에 client도 있는 구조가 되기 때문에 어디에서나 사용할 수 있습니다.
+  - 명령어 기반의 프로그램입니다.
+
+- 단점 
+  - 명령어 기반 프로그램이기 떄문에 명령어를 기억하고 있어야 한다는 단점이 있습니다. 
+
+
+
+하는 일에 따라 장단점을 잘 고려해서 데이터베이스 클라이언트를 잘 선택해서 사용하는게 현명하겠습니다😃
+
+`what is the best mysql client`
